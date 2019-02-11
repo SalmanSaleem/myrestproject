@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-@RequestMapping("/api")
+@RequestMapping("/")
 @RestController
 public class MyRestController {
 
     @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Home index() throws UnknownHostException {
+    public String index() throws UnknownHostException {
+        return "Hello World!";
+    }
+
+    @RequestMapping(value = "/ip", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Home getIpAddress() throws UnknownHostException {
         return new Home("IP address", InetAddress.getLocalHost().getHostAddress());
     }
 }
